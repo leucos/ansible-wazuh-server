@@ -36,6 +36,6 @@
   environment:
     http_proxy: ""
     https_proxy: ""
-  when: item not in __wazuh_current_templates
+  when: "wazuh" not in __wazuh_current_templates
   tags: ["skip_ansible_lint"]
 
