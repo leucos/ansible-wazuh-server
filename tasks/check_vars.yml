@@ -8,5 +8,5 @@
   when: not item
   with_items:
     - wazuh_server_elasticsearch_servers
-		- wazuh_server_logstash_server
+    - wazuh_server_logstash_server
 
