@@ -7,5 +7,5 @@
   fail: msg="{{ item }} is not defined"
   when: not {{ item }}
   with_items:
-    - wazuh_server_elasticsearch_servers
+    - wazuh_server_elasticsearch_group
 
