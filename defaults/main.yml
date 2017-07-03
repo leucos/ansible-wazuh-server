@@ -1,1 +1,2 @@
 wazuh_server_elasticsearch_servers: False
+wazuh_server_logstash_server: False

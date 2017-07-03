@@ -10,10 +10,7 @@ filebeat:
 
 output:
  logstash:
-   hosts:
-{% for host in wazuh_server_elasticsearch_servers %}
-    - "{{ host }}"
-{% endfor %}
+   hosts: ["{{ wazuh_logstash_server }}"]
 
 #   ssl:
 #     certificate_authorities: ["/etc/filebeat/logstash.crt"]
