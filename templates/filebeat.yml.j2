@@ -12,7 +12,7 @@ output:
  logstash:
    # The Logstash hosts
    hosts:
-{% for host in filebeat_output_elasticsearch_hosts %}
+{% for host in groups[wazuh_server_elasticsearch_group] %}
      - {{ host }}
 {% endfor %}
 
