@@ -39,3 +39,15 @@
   when: '"wazuh" not in __wazuh_current_templates'
   tags: ["skip_ansible_lint"]
 
+- name: Checks if certificate is present
+  stat:
+    path: /var/ossec/etc/sslmanager.key
+  register: __wazuh_server_key
+
+- name: Generates key if needed
+  command: openssl req -x509 -batch -nodes -days 365 -newkey rsa:2048 -keyout /var/ossec/etc/sslmanager.key -out /var/ossec/etc/sslmanager.cert
+  when: not (__wazuh_server_key.stat.isreg is defined and __wazuh_server_key.stat.isreg)
+  register: __wazuh_new_key
+
+
+
