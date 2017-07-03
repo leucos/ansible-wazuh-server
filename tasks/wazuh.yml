@@ -21,7 +21,7 @@
 
 - name: Checks templates list
   uri:
-    url: http://{{ wazuh_server_elasticsearch_server.0 }}/_template
+    url: http://{{ groups[wazuh_server_elasticsearch_group].0 }}/_template
     method: GET
     return_content: yes
   ignore_errors: true
@@ -32,7 +32,7 @@
 
 - name: Creates templates if needed
   shell: >
-    curl -XPUT --fail -d '{{ lookup('file', 'template_file.json' ) }}' http://{{ wazuh_server_elasticsearch_server.0 }}/_template/wazuh
+    curl -XPUT --fail -d '{{ lookup('file', 'template_file.json' ) }}' http://{{ groups[wazuh_server_elasticsearch_group].0 }}/_template/wazuh
   environment:
     http_proxy: ""
     https_proxy: ""
