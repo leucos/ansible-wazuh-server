@@ -12,8 +12,8 @@ output:
  logstash:
    # The Logstash hosts
    hosts:
-{% for host in groups[wazuh_server_elasticsearch_group] %}
-     - {{ host }}
+{% for host in wazuh_server_elasticsearch_servers %}
+		- {{ host }}
 {% endfor %}
 
 #   ssl:
