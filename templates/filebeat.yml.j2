@@ -13,7 +13,7 @@ output:
    # The Logstash hosts
    hosts:
 {% for host in wazuh_server_elasticsearch_servers %}
-		- {{ host }}
+    - "{{ host }}"
 {% endfor %}
 
 #   ssl:
