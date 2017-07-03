@@ -1,0 +1,16 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  author: Michel Blanc
+  company: devops.works
+  description: Wazuh server role
+  license: MIT
+  min_ansible_version: 2.3.0.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - system

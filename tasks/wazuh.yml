@@ -1,0 +1,41 @@
+- name: Adds wazuh key
+  apt_key:
+    url: https://packages.wazuh.com/key/GPG-KEY-WAZUH
+    state: present
+
+- name: Adds wazuh repos
+  apt_repository:
+    repo: "deb https://packages.wazuh.com/apt {{ ansible_lsb.codename }} main"
+    filename: /etc/apt/sources.list.d/wazuh.list
+
+- name: Installs wazuh manager & api
+  apt: pkg={{ item }} state=present
+  with_items:
+    - wazuh-manager
+    - wazuh-api
+
+- name: Adds filebeat configuration
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+
+- name: Checks templates list
+  uri:
+    url: http://{{ wazuh_server_elasticsearch_server.0 }}/_template
+    method: GET
+    return_content: yes
+  ignore_errors: true
+  environment:
+    http_proxy: ""
+    https_proxy: ""
+  register: __wazuh_current_templates
+
+- name: Creates templates if needed
+  shell: >
+    curl -XPUT --fail -d '{{ lookup('file', 'template_file.json' ) }}' http://{{ wazuh_server_elasticsearch_server.0 }}/_template/wazuh
+  environment:
+    http_proxy: ""
+    https_proxy: ""
+  when: item not in __wazuh_current_templates
+  tags: ["skip_ansible_lint"]
+

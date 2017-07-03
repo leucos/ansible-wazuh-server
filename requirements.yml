@@ -1,0 +1,7 @@
+#- src: acmecorp.role
+#- src: git+ssh://git@github.com/acmecorp/ansible-role.git
+#- src: https://github.com/acmecorp/ansible-role.git
+- src: https://github.com/leucos/ansible-nodejs.git
+  name: ansible-nodejs
+- src: https://github.com/leucos/ansible-filebeat.git
+  name: ansible-filebeat
