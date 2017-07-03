@@ -10,7 +10,4 @@ filebeat:
 
 output:
  logstash:
-   hosts: ["{{ wazuh_logstash_server }}"]
-
-#   ssl:
-#     certificate_authorities: ["/etc/filebeat/logstash.crt"]
+   hosts: ["{{ wazuh_server_logstash_server }}"]
